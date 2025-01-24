@@ -1,0 +1,42 @@
+I was trying to get cypress installed but keep getting caught in a loop cypress would install,
+yet when I tried to run my npm test it would be unable to run the npm test.
+cypress was creating issues.
+I found this error calld a SIGTRAP error.
+These commands ran in your vs terminal can help issues 
+related to deeper system dependency conflicts.
+Here are the steps I used to trouble shoot this:
+
+  1. Update node.js and npm: helps ensure you are using the latest version of node.js & npm.
+
+sudo apt-get update
+sudo apt-get install nodejs npm
+
+ 
+  2.Clear node modules and reinstall: remove node-modules directory and 
+reinstall all dependencies.
+
+rm -rf node_modules
+npm install
+
+ 
+  3.Run cypress with debugging: try running cypress with additional 
+debugging information to get more insights:
+
+DEBUG=cypress:* npx cypress verify
+
+ 
+  4.Check fpr cpnflicting software: sometimes, other installed software can cause conflicts. 
+ensure there are no other versions of cypress or relates dependencies installed.
+
+  5.Reinstall cypress with a different directory: try reinstalling cypress in a completely
+new directory.
+
+mkdir new-cypress-project2
+cd new-cypress-project2
+npm init -y
+npm install cypress@14.0.0 --save-dev
+npx cypress verify
+
+
+I ran these in my terminal and voila! I was able to successfully run an npm test!
+I hope this helps!
